@@ -87,7 +87,113 @@ log(
 );
 
 for (let i = 0; i < arr2.length; i++) {
-  log('elements at position ' + i, arr2[1]);
+  log('elements at position ' + i, arr2[i]);
 }
 
+// modification
+// mutable - original array can be changed
+// immutable - original array cannot be changed
+
+let arr3 = arr2.map(function (i) {
+  return i;
+}); //immutable
+
+// How to modify the element inside an array ? Update
+
+// log('before splice operation', JSON.parse(JSON.stringify(arr2)));
+
+// arr2.splice(0,2); // without insert array delete and return
+// arr2.splice(0,2,"Data1") // with insert array return after delete and insert
+
+// log('after splice operation', arr2);
+// log(arr3);
+log('before slice operation', JSON.parse(JSON.stringify(arr2)));
+
+//immutable
+var slicedItems = arr2.slice(0, 2);
+log(slicedItems);
+
+log('after slice operation', arr2);
+
+// how to delete element inside an array ? Delete
+// delete elemnt from the end position
+arr2.pop();
+// delete element from th start position
+arr2.shift();
+
 log(arr2);
+
+//Higher order functoin
+// map - transform an array value
+// filter - filter the array values
+// find - to get first match element from an array
+// some - any one element can be matched from an array but it return boolean(true/false)
+// every - each and every element ina an array should match the conditions but it return boolean
+// findIndex - based on matched eleement in array it will return index position
+
+// function = function(){  return }
+// shortcut /fat arrow function = () => {}
+
+let skills = [
+  'angular',
+  'html5',
+  'css3',
+  'nodejs',
+  'bootstrap5',
+  'rxjs',
+  'ngrx',
+  'javascript',
+  'jquery',
+  'ajax',
+  'nestjs',
+  'expressjs',
+];
+
+// capitalize all skills set using MAP
+
+let capitalize = skills.map((item, index, arr) => {
+  let firstCharacter = item.substring(0, 1);
+  let capitalizeFirstChar = firstCharacter.toUpperCase();
+  let remainigCharacters = item.substring(1, item.length);
+  return capitalizeFirstChar + remainigCharacters;
+});
+
+// filter all skills set having js
+
+let jsBasedSKillSet = skills.filter((item, index, array) => {
+  if (item.includes('js')) return item;
+});
+
+let nestJsAsSkillSet = jsBasedSKillSet.find((item, index, array) => {
+  if (item.includes('nestjs')) return item;
+});
+
+let nestJsAsSkillSetIndex = skills.findIndex((item, index, array) => {
+  if (item.includes('nestjs')) return item;
+});
+
+//sample for every  success
+let isJsPresentSuccessCase = jsBasedSKillSet.every((item, index, array) => {
+  if (item.includes('js')) return item;
+});
+
+//sample for every  failure
+let isJsPresentFailureCase = skills.every((item, index, array) => {
+  if (item.includes('js')) return item;
+});
+
+//some for some  success
+let isAnyOneJsPresentSuccessCase = jsBasedSKillSet.some(
+  (item, index, array) => {
+    if (item.includes('js')) return item;
+  }
+);
+
+//sample for some  failure
+let isAnyOneJsPresentFailureCase = ['A', 'B', 'C'].some(
+  (item, index, array) => {
+    if (item.includes('js')) return item;
+  }
+);
+
+log(isAnyOneJsPresentSuccessCase, isAnyOneJsPresentFailureCase);
