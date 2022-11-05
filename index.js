@@ -130,6 +130,7 @@ log(arr2);
 // some - any one element can be matched from an array but it return boolean(true/false)
 // every - each and every element ina an array should match the conditions but it return boolean
 // findIndex - based on matched eleement in array it will return index position
+// sort - sorting in an array (ascending and descending).
 
 // function = function(){  return }
 // shortcut /fat arrow function = () => {}
@@ -196,4 +197,27 @@ let isAnyOneJsPresentFailureCase = ['A', 'B', 'C'].some(
   }
 );
 
-log(isAnyOneJsPresentSuccessCase, isAnyOneJsPresentFailureCase);
+// log(isAnyOneJsPresentSuccessCase, isAnyOneJsPresentFailureCase);
+
+// join - array to string
+// concat - concat two array immutable operation
+// includes - returns boolean if condition matched
+// indexof - return index if condition mathces else return -1
+
+let skillAsString = capitalize.join(';');
+
+let concatedSKills = skills.map((i) => i.toUpperCase()).concat(skills);
+
+log(concatedSKills.includes('express2js'));
+log(concatedSKills.indexOf('expressjs'));
+
+log(
+  concatedSKills.sort((currentItem, nextItem) =>
+    currentItem.localeCompare(nextItem)
+  )
+); // ascending order
+log(
+  concatedSKills.sort((currentItem, nextItem) =>
+    nextItem.localeCompare(currentItem)
+  )
+); // descending order
